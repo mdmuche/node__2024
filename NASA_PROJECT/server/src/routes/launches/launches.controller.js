@@ -16,9 +16,9 @@ function httpAddNewLaunch(req, res) {
     !launch.mission ||
     !launch.rocket ||
     !launch.launchDate ||
-    launch.target
+    !launch.target
   ) {
-    return res.status(400).json({ erro: "missing required launch property" });
+    return res.status(400).json({ error: "missing required launch property" });
   }
 
   launch.launchDate = new Date(launch.launchDate);
@@ -27,7 +27,6 @@ function httpAddNewLaunch(req, res) {
       error: "invalid launch date",
     });
   }
-
   addNewLaunch(launch);
   return res.status(201).json(launch);
 }
